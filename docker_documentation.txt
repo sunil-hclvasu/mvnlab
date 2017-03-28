@@ -1,0 +1,375 @@
+[root@ip-10-0-0-96 ~]# cat /etc/yum.repos.d/docker.repo
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+
+
+[root@ip-10-0-0-96 ~]# yum repolist
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+repo id                                                                  repo name                                                                                status
+bintray--jfrog-artifactory-rpms                                          bintray--jfrog-artifactory-rpms                                                              97
+dockerrepo                                                               Docker Repository                                                                           100
+epel/x86_64                                                              Extra Packages for Enterprise Linux 7 - x86_64                                           11,421
+jenkins                                                                  Jenkins-stable                                                                               59
+jpackage-generic                                                         JPackage generic                                                                          3,307
+rhui-REGION-client-config-server-7/x86_64                                Red Hat Update Infrastructure 2.0 Client Configuration Server 7                               6
+rhui-REGION-rhel-server-releases/7Server/x86_64                          Red Hat Enterprise Linux Server 7 (RPMs)                                                 14,050
+rhui-REGION-rhel-server-rh-common/7Server/x86_64                         Red Hat Enterprise Linux Server 7 RH Common (RPMs)                                          222
+spacewalk/x86_64                                                         Spacewalk                                                                                   114
+repolist: 29,376
+[root@ip-10-0-0-96 ~]#
+
+[root@ip-10-0-0-96 ~]# yum list docker-engine
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Available Packages
+docker-engine.x86_64                                                         17.03.1.ce-1.el7.centos                                                          dockerrepo
+
+[root@ip-10-0-0-96 ~]# yum install docker-engine
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Resolving Dependencies
+--> Running transaction check
+---> Package docker-engine.x86_64 0:17.03.1.ce-1.el7.centos will be installed
+--> Processing Dependency: docker-engine-selinux >= 17.03.1.ce-1.el7.centos for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Processing Dependency: libseccomp.so.2()(64bit) for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Processing Dependency: libltdl.so.7()(64bit) for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Running transaction check
+---> Package docker-engine-selinux.noarch 0:17.03.1.ce-1.el7.centos will be installed
+---> Package libseccomp.x86_64 0:2.3.1-2.el7 will be installed
+---> Package libtool-ltdl.x86_64 0:2.4.2-21.el7_2 will be installed
+
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+========================================================================================================================================================================
+ Package                                 Arch                     Version                                      Repository                                          Size
+========================================================================================================================================================================
+Installing:
+ docker-engine                           x86_64                   17.03.1.ce-1.el7.centos                      dockerrepo                                          19 M
+Installing for dependencies:
+ docker-engine-selinux                   noarch                   17.03.1.ce-1.el7.centos                      dockerrepo                                          28 k
+ libseccomp                              x86_64                   2.3.1-2.el7                                  rhui-REGION-rhel-server-releases                    56 k
+ libtool-ltdl                            x86_64                   2.4.2-21.el7_2                               rhui-REGION-rhel-server-releases                    49 k
+
+Transaction Summary
+========================================================================================================================================================================
+Install  1 Package (+3 Dependent packages)
+
+Total download size: 19 M
+Installed size: 65 M
+Is this ok [y/d/N]: Exiting on user command
+Your transaction was saved, rerun it with:
+ yum load-transaction /tmp/yum_save_tx.2017-03-28.15-36.PNw7dH.yumtx
+[root@ip-10-0-0-96 ~]# yum install docker-engine
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+Resolving Dependencies
+--> Running transaction check
+---> Package docker-engine.x86_64 0:17.03.1.ce-1.el7.centos will be installed
+--> Processing Dependency: docker-engine-selinux >= 17.03.1.ce-1.el7.centos for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Processing Dependency: libseccomp.so.2()(64bit) for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Processing Dependency: libltdl.so.7()(64bit) for package: docker-engine-17.03.1.ce-1.el7.centos.x86_64
+--> Running transaction check
+---> Package docker-engine-selinux.noarch 0:17.03.1.ce-1.el7.centos will be installed
+---> Package libseccomp.x86_64 0:2.3.1-2.el7 will be installed
+---> Package libtool-ltdl.x86_64 0:2.4.2-21.el7_2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+========================================================================================================================================================================
+ Package                                 Arch                     Version                                      Repository                                          Size
+========================================================================================================================================================================
+Installing:
+ docker-engine                           x86_64                   17.03.1.ce-1.el7.centos                      dockerrepo                                          19 M
+Installing for dependencies:
+ docker-engine-selinux                   noarch                   17.03.1.ce-1.el7.centos                      dockerrepo                                          28 k
+ libseccomp                              x86_64                   2.3.1-2.el7                                  rhui-REGION-rhel-server-releases                    56 k
+ libtool-ltdl                            x86_64                   2.4.2-21.el7_2                               rhui-REGION-rhel-server-releases                    49 k
+
+Transaction Summary
+========================================================================================================================================================================
+Install  1 Package (+3 Dependent packages)
+
+Total download size: 19 M
+Installed size: 65 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/4): libtool-ltdl-2.4.2-21.el7_2.x86_64.rpm                                                                                                    |  49 kB  00:00:00
+(2/4): libseccomp-2.3.1-2.el7.x86_64.rpm                                                                                                         |  56 kB  00:00:00
+warning: /var/cache/yum/x86_64/7Server/dockerrepo/packages/docker-engine-selinux-17.03.1.ce-1.el7.centos.noarch.rpm: Header V4 RSA/SHA512 Signature, key ID 2c52609d: NOKEY
+Public key for docker-engine-selinux-17.03.1.ce-1.el7.centos.noarch.rpm is not installed
+(3/4): docker-engine-selinux-17.03.1.ce-1.el7.centos.noarch.rpm                                                                                  |  28 kB  00:00:00
+(4/4): docker-engine-17.03.1.ce-1.el7.centos.x86_64.rpm                                                                                          |  19 MB  00:00:01
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                    11 MB/s |  19 MB  00:00:01
+Retrieving key from https://yum.dockerproject.org/gpg
+Importing GPG key 0x2C52609D:
+ Userid     : "Docker Release Tool (releasedocker) <docker@docker.com>"
+ Fingerprint: 5811 8e89 f3a9 1289 7c07 0adb f762 2157 2c52 609d
+ From       : https://yum.dockerproject.org/gpg
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libseccomp-2.3.1-2.el7.x86_64                                                                                                                        1/4
+  Installing : docker-engine-selinux-17.03.1.ce-1.el7.centos.noarch                                                                                                 2/4
+setsebool:  SELinux is disabled.
+libsemanage.semanage_direct_install_info: Overriding docker module at lower priority 100 with module at priority 400.
+  Installing : libtool-ltdl-2.4.2-21.el7_2.x86_64                                                                                                                   3/4
+  Installing : docker-engine-17.03.1.ce-1.el7.centos.x86_64                                                                                                         4/4
+  Verifying  : docker-engine-17.03.1.ce-1.el7.centos.x86_64                                                                                                         1/4
+  Verifying  : libtool-ltdl-2.4.2-21.el7_2.x86_64                                                                                                                   2/4
+  Verifying  : docker-engine-selinux-17.03.1.ce-1.el7.centos.noarch                                                                                                 3/4
+  Verifying  : libseccomp-2.3.1-2.el7.x86_64                                                                                                                        4/4
+
+Installed:
+  docker-engine.x86_64 0:17.03.1.ce-1.el7.centos
+
+Dependency Installed:
+  docker-engine-selinux.noarch 0:17.03.1.ce-1.el7.centos               libseccomp.x86_64 0:2.3.1-2.el7               libtool-ltdl.x86_64 0:2.4.2-21.el7_2
+
+Complete!
+[root@ip-10-0-0-96 ~]#
+
+
+
+
+[root@ip-10-0-0-96 ~]# systemctl start docker
+[root@ip-10-0-0-96 ~]# systemctl enable docker
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+[root@ip-10-0-0-96 ~]#
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+78445dd45222: Pull complete
+Digest: sha256:c5515758d4c5e1e838e9cd307f6c6a0d620b5e07e6f927b07d05f6d12a1ac8d7
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+
+
+
+[root@ip-10-0-0-96 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              48b5124b2768        2 months ago        1.84 kB
+
+
+[root@ip-10-0-0-96 ~]# docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+d54efb8db41d: Pull complete
+f8b845f45a87: Pull complete
+e8db7bf7c39f: Pull complete
+9654c40e9079: Pull complete
+6d9ef359eaaa: Pull complete
+Digest: sha256:dd7808d8792c9841d0b460122f1acf0a2dd1f56404f8d1e56298048885e45535
+Status: Downloaded newer image for ubuntu:latest
+
+
+[root@ip-10-0-0-96 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              0ef2e08ed3fa        4 weeks ago         130 MB
+hello-world         latest              48b5124b2768        2 months ago        1.84 kB
+
+
+
+[root@ip-10-0-0-96 ~]# docker run ubuntu /bin/echo "Hello Sunil"
+Hello Sunil
+[root@ip-10-0-0-96 ~]#
+
+
+[root@ip-10-0-0-96 ~]# docker run -t -i ubuntu /bin/bash
+root@5e646c0caf6c:/# uname -a
+
+
+Linux 5e646c0caf6c 3.10.0-514.6.1.el7.x86_64 #1 SMP Sat Dec 10 11:15:38 EST 2016 x86_64 x86_64 x86_64 GNU/Linux
+root@5e646c0caf6c:/# cat /etc/issue
+Ubuntu 16.04.2 LTS \n \l
+
+root@5e646c0caf6c:/# exit
+exit
+[root@ip-10-0-0-96 ~]#
+
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS                      PORTS               NAMES
+2cf80593c064        ubuntu              "/bin/bash"              About a minute ago   Exited (0) 52 seconds ago                       sunil1
+5e646c0caf6c        ubuntu              "/bin/bash"              3 minutes ago        Exited (0) 3 minutes ago                        jovial_williams
+075ee8902dcc        ubuntu              "/bin/bash"              3 minutes ago        Exited (0) 3 minutes ago                        nifty_liskov
+9ceea292254d        ubuntu:14.04        "/bin/echo 'Hello ..."   4 minutes ago        Exited (0) 4 minutes ago                        zen_jepsen
+d8ede5afc6e4        ubuntu              "/bin/echo 'Hello ..."   4 minutes ago        Exited (0) 4 minutes ago                        frosty_cori
+67a0d3afb3c1        ubuntu              "/bin/echo 'Hello ..."   4 minutes ago        Exited (0) 4 minutes ago                        eloquent_payne
+00edcf83ed51        hello-world         "/hello"                 6 minutes ago        Exited (0) 6 minutes ago                        pedantic_leakey
+754e0bf9343c        hello-world         "/hello"                 7 minutes ago        Exited (0) 7 minutes ago                        objective_lichterman
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker container create 0ef2e08ed3fa
+1d5cc541f4695b0d59333893217d716d7091d7490dd70a7e6f3556057155235c
+[root@ip-10-0-0-96 ~]#
+
+
+
+[root@ip-10-0-0-96 ~]# docker search sintara
+NAME                         DESCRIPTION   STARS     OFFICIAL   AUTOMATED
+subh1994/sintara             sintara       0                    [OK]
+himanshugupta15/sintara      Sintara app   0
+dixithk/sintara                            0
+ankdadoo/sintara                           0
+longreen/sintara                           0
+ibrahimsha/sintara                         0
+daisuke310vvv/sintara-test                 0
+
+
+[root@ip-10-0-0-96 ~]# docker start dfeb023b820f
+dfeb023b820f
+
+[root@ip-10-0-0-96 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+dfeb023b820f        ubuntu              "/bin/bash"         53 seconds ago      Up 4 seconds                            laughing_allen
+
+[root@ip-10-0-0-96 ~]# docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+dfeb023b820f        ubuntu              "/bin/bash"         About a minute ago   Up 12 seconds                           laughing_allen
+
+[root@ip-10-0-0-96 ~]# docker stop dfeb023b820f
+dfeb023b820f
+
+[root@ip-10-0-0-96 ~]# docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@ip-10-0-0-96 ~]#
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker run -d -P tomcat:7
+Unable to find image 'tomcat:7' locally
+7: Pulling from library/tomcat
+6d827a3ef358: Pull complete
+2726297beaf1: Pull complete
+d6e483851652: Pull complete
+0ab260573986: Pull complete
+b7c48cee0b2b: Pull complete
+1368ab15aa1c: Pull complete
+e4b9c85c3e06: Pull complete
+ee3dc5d1e4c7: Pull complete
+e101174ccdbd: Pull complete
+e9e59dd4048f: Pull complete
+f4b159c23268: Pull complete
+Digest: sha256:89bd6a196b4e1d33ab6fb3b699a9bc022b22c700346166865edf66b1b6bb8767
+Status: Downloaded newer image for tomcat:7
+aaa47675955d696dce5f90f9ecc9c83814db0eae8fe0030fd5c0b346862a125c
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
+aaa47675955d        tomcat:7            "catalina.sh run"   24 seconds ago      Up 23 seconds       0.0.0.0:32768->8080/tcp   jovial_clarke
+
+
+
+
+[root@ip-10-0-0-96 ~]# docker stop aaa47675955d
+aaa47675955d
+
+
+[root@ip-10-0-0-96 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@ip-10-0-0-96 ~]#
+
+
+
+[root@ip-10-0-0-96 ~]# docker rmi e537c8f3f898 -f
+Deleted: sha256:e537c8f3f89818b70c4f5b39d77708069bbc1520c25c19eeae4d05e39195a80b
+
+
+
+[root@ip-10-0-0-96 ~]# docker rmi 8f46b2473e5d -f
+Deleted: sha256:8f46b2473e5de2dabed30f7cad78cc165309ae1ee03e3546136c4765d070609d
+
+
+
+[root@ip-10-0-0-96 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+tomcat              7                   af4646092ad3        5 days ago          357 MB
+ubuntu              latest              0ef2e08ed3fa        4 weeks ago         130 MB
+ubuntu              14.04               7c09e61e9035        4 weeks ago         188 MB
+hello-world         latest              48b5124b2768        2 months ago        1.84 kB
+
+
+
+[root@ip-10-0-0-96 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+a8bc819dbf1e        0ef2e08ed3fa        "/bin/bash"         11 minutes ago      Up 3 seconds                            pensive_jones
+
+
+[root@ip-10-0-0-96 ~]# docker exec -it a8bc819dbf1e /bin/bash
+root@a8bc819dbf1e:/#
+
+
+root@a8bc819dbf1e:/# vi /etc/issue
+
+root@a8bc819dbf1e:/# exit
+
+
+[root@ip-10-0-0-96 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+a8bc819dbf1e        0ef2e08ed3fa        "/bin/bash"         13 minutes ago      Up 2 minutes                            pensive_jones
+
+
+[root@ip-10-0-0-96 ~]# docker commit a8bc819dbf1e sv_ubuntu
+sha256:d3443d4239b399370d866703c01f9f6e2c6c7e2e159481f373bfd5027dcf1a52
+
+[root@ip-10-0-0-96 ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+sv_ubuntu           latest              d3443d4239b3        24 seconds ago      228 MB
+tomcat              7                   af4646092ad3        5 days ago          357 MB
+ubuntu              latest              0ef2e08ed3fa        4 weeks ago         130 MB
+ubuntu              14.04               7c09e61e9035        4 weeks ago         188 MB
+hello-world         latest              48b5124b2768        2 months ago        1.84 kB
+
+
+[root@ip-10-0-0-96 ~]# docker run -it d3443d4239b3 /bin/bash
+root@ff41b7300f87:/# 
+
+root@ff41b7300f87:/# cat /etc/issue
+Ubuntu 16.04.2 LTS \n \l
+# TEXT ADDED BY SUNIL VASU
+
+[root@ip-10-0-0-96 ~]# docker start ff41b7300f87
+ff41b7300f87
+
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+ff41b7300f87        d3443d4239b3        "/bin/bash"         About a minute ago   Up 50 seconds                           heuristic_stallman
+
