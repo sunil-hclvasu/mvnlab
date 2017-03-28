@@ -373,3 +373,128 @@ ff41b7300f87
 CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
 ff41b7300f87        d3443d4239b3        "/bin/bash"         About a minute ago   Up 50 seconds                           heuristic_stallman
 
+
+
+[root@ip-10-0-0-96 newimg]# pwd
+/docker/newimg
+
+
+[root@ip-10-0-0-96 newimg]# ls
+Dockerfile
+
+[root@ip-10-0-0-96 newimg]# cat Dockerfile
+FROM ubuntu:14.04
+MAINTAINER Kate Smith <ksmith@example.com>
+RUN apt-get update && apt-get install ruby ruby-dev
+RUN gem install sinatra
+
+[root@ip-10-0-0-96 newimg]# docker build .
+Sending build context to Docker daemon 2.048 kB
+Step 1/4 : FROM ubuntu:14.04
+ ---> 7c09e61e9035
+Step 2/4 : MAINTAINER Kate Smith <ksmith@example.com>
+ ---> Running in 356beda7763e
+ ---> 620975aa2683
+Removing intermediate container 356beda7763e
+Step 3/4 : RUN apt-get update && apt-get install ruby ruby-dev
+ ---> Running in 26ea0cee0a13
+Ign http://archive.ubuntu.com trusty InRelease
+Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
+Get:3 http://archive.ubuntu.com trusty Release.gpg [933 B]
+Get:4 http://archive.ubuntu.com trusty-updates/main Sources [487 kB]
+Get:5 http://archive.ubuntu.com trusty-updates/restricted Sources [6467 B]
+Get:6 http://archive.ubuntu.com trusty-updates/universe Sources [222 kB]
+Get:7 http://archive.ubuntu.com trusty-updates/main amd64 Packages [1210 kB]
+Get:8 http://archive.ubuntu.com trusty-updates/restricted amd64 Packages [21.2 kB]
+Get:9 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [520 kB]
+Get:10 http://archive.ubuntu.com trusty Release [58.5 kB]
+Get:11 http://archive.ubuntu.com trusty-security/main Sources [163 kB]
+Get:12 http://archive.ubuntu.com trusty-security/restricted Sources [5066 B]
+Get:13 http://archive.ubuntu.com trusty-security/universe Sources [59.8 kB]
+Get:14 http://archive.ubuntu.com trusty-security/main amd64 Packages [744 kB]
+Get:15 http://archive.ubuntu.com trusty-security/restricted amd64 Packages [17.8 kB]
+Get:16 http://archive.ubuntu.com trusty-security/universe amd64 Packages [200 kB]
+Get:17 http://archive.ubuntu.com trusty/main Sources [1335 kB]
+Get:18 http://archive.ubuntu.com trusty/restricted Sources [5335 B]
+Get:19 http://archive.ubuntu.com trusty/universe Sources [7926 kB]
+Get:20 http://archive.ubuntu.com trusty/main amd64 Packages [1743 kB]
+Get:21 http://archive.ubuntu.com trusty/restricted amd64 Packages [16.0 kB]
+Get:22 http://archive.ubuntu.com trusty/universe amd64 Packages [7589 kB]
+Fetched 22.5 MB in 17s (1265 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following extra packages will be installed:
+  binutils ca-certificates cpp cpp-4.8 gcc gcc-4.8 libasan0 libatomic1
+  libc-dev-bin libc6 libc6-dev libcloog-isl4 libgcc-4.8-dev libgmp10 libgomp1
+  libisl10 libitm1 libmpc3 libmpfr4 libquadmath0 libruby1.9.1 libtsan0
+  libyaml-0-2 linux-libc-dev manpages manpages-dev openssl ruby1.9.1
+  ruby1.9.1-dev
+Suggested packages:
+  binutils-doc cpp-doc gcc-4.8-locales gcc-multilib make autoconf automake1.9
+  libtool flex bison gdb gcc-doc gcc-4.8-multilib gcc-4.8-doc libgcc1-dbg
+  libgomp1-dbg libitm1-dbg libatomic1-dbg libasan0-dbg libtsan0-dbg
+  libquadmath0-dbg glibc-doc man-browser ri ruby1.9.1-examples ri1.9.1
+  graphviz ruby-switch
+The following NEW packages will be installed:
+  binutils ca-certificates cpp cpp-4.8 gcc gcc-4.8 libasan0 libatomic1
+  libc-dev-bin libc6-dev libcloog-isl4 libgcc-4.8-dev libgmp10 libgomp1
+  libisl10 libitm1 libmpc3 libmpfr4 libquadmath0 libruby1.9.1 libtsan0
+  libyaml-0-2 linux-libc-dev manpages manpages-dev openssl ruby ruby-dev
+  ruby1.9.1 ruby1.9.1-dev
+The following packages will be upgraded:
+  libc6
+1 upgraded, 30 newly installed, 0 to remove and 5 not upgraded.
+Need to get 28.9 MB of archives.
+After this operation, 90.1 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Abort.
+The command '/bin/sh -c apt-get update && apt-get install ruby ruby-dev' returned a non-zero code: 1
+[root@ip-10-0-0-96 newimg]#
+
+
+
+
+[root@ip-10-0-0-96 newimg]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              620975aa2683        51 seconds ago      188 MB
+sv_ubuntu           01                  d3443d4239b3        20 minutes ago      228 MB
+sv_ubuntu           latest              d3443d4239b3        20 minutes ago      228 MB
+tomcat              7                   af4646092ad3        5 days ago          357 MB
+ubuntu              latest              0ef2e08ed3fa        4 weeks ago         130 MB
+ubuntu              14.04               7c09e61e9035        4 weeks ago         188 MB
+hello-world         latest              48b5124b2768        2 months ago        1.84 kB
+
+
+
+
+[root@ip-10-0-0-96 newimg]# docker run docker/whalesay cowsay boo
+Unable to find image 'docker/whalesay:latest' locally
+latest: Pulling from docker/whalesay
+e190868d63f8: Pull complete
+909cd34c6fd7: Pull complete
+0b9bfabab7c1: Pull complete
+a3ed95caeb02: Pull complete
+00bf65475aba: Pull complete
+c57b6bcc83e3: Pull complete
+8978f6879e2f: Pull complete
+8eed3712d2cf: Pull complete
+Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
+Status: Downloaded newer image for docker/whalesay:latest
+ _____
+< boo >
+ -----
+    \
+     \
+      \
+                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+        \    \        __/
+          \____\______/
+[root@ip-10-0-0-96 newimg]#
+
